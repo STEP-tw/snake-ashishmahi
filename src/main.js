@@ -21,7 +21,7 @@ const animateSnake=function() {
   paintBody(oldHead);
   unpaintSnake(oldTail);
   paintHead(head);
-  if(head.doesCollisionOccures()){
+  if(head.doesCollisionOccures()||head.eatItself()) {
   endGame();
   return;
   }
@@ -55,7 +55,7 @@ const addKeyListener=function() {
 
 const createSnake=function() {
   let tail=new Position(12,10,"east");
-  let body=[];
+  body=[];
   body.push(tail);
   body.push(tail.next());
   let head=tail.next().next();

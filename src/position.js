@@ -38,9 +38,13 @@ Position.prototype.turnRight=function() {
 Position.prototype.isSameCoordAs=function(other) {
   return this.x==other.x && this.y==other.y;
 }
-//
-// let numberOfRows=60;
-// let numberOfCols=120;
+
+Position.prototype.eatItself = function () {
+  let refPosition = this;
+  return body.some(function(pos){
+    return refPosition.x==pos.x&&refPosition.y==pos.y;
+  });
+};
 
 Position.prototype.doesXCoordCollide = function () {
   return this.x>=120||this.x<0;
