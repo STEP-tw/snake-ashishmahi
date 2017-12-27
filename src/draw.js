@@ -36,6 +36,10 @@ const drawSnake=function(snake) {
   paintHead(snake.getHead());
 }
 
+const updateDisplay = function(text){
+  document.getElementById("displayBar").innerText = text;
+}
+
 const drawFood=function(food) {
   paintCell(food,"food");
 }

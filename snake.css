@@ -26,7 +26,6 @@
 }
 
 .display{
-  visibility: hidden;
   font-size: 40px;
   position: fixed;
   margin-left: 250px;

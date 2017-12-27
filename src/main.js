@@ -6,8 +6,7 @@ let numberOfCols=120;
 let animator=undefined;
 
 const askForRestartGame = function(){
-  let display = document.getElementsByClassName("display")[0];
-  display.style.visibility = "visible";
+  updateDisplay("Game Over! Click here to restart game");
 }
 
 const endGame = function(){
