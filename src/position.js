@@ -39,23 +39,23 @@ Position.prototype.isSameCoordAs=function(other) {
   return this.x==other.x && this.y==other.y;
 }
 
-Position.prototype.eatItself = function () {
+Position.prototype.eatBody = function () {
   let refPosition = this;
   return body.some(function(pos){
     return refPosition.x==pos.x&&refPosition.y==pos.y;
   });
 };
 
-Position.prototype.doesXCoordCollide = function () {
+Position.prototype.xCoordHitWall = function () {
   return this.x>=120||this.x<0;
 };
 
-Position.prototype.doesYCoordCollide = function () {
+Position.prototype.yCoordHitWall = function () {
   return this.y>=60||this.y<0;
 };
 
-Position.prototype.doesCollisionOccures = function () {
-  return this.doesXCoordCollide()||this.doesYCoordCollide();
+Position.prototype.hitWall = function () {
+  return this.xCoordHitWall()||this.yCoordHitWall();
 };
 
 Position.prototype.getCoord=function() {

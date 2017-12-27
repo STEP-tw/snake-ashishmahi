@@ -14,6 +14,7 @@ const endGame = function(){
   clearInterval(animator);
   askForRestartGame();
 }
+
 const animateSnake=function() {
   let oldHead=snake.getHead();
   let oldTail=snake.move();
@@ -21,7 +22,7 @@ const animateSnake=function() {
   paintBody(oldHead);
   unpaintSnake(oldTail);
   paintHead(head);
-  if(head.doesCollisionOccures()||head.eatItself()) {
+  if(head.hitWall()||head.eatBody()) {
   endGame();
   return;
   }
