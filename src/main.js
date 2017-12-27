@@ -11,7 +11,14 @@ const askForRestartGame = function(){
 
 const endGame = function(){
   clearInterval(animator);
+  removeKeyListener();
   askForRestartGame();
+}
+
+const updateSnakeOnDisplay = function(oldHead,oldTail,head){
+  paintBody(oldHead);
+  unpaintSnake(oldTail);
+  paintHead(head);
 }
 
 const animateSnake=function() {
@@ -22,12 +29,9 @@ const animateSnake=function() {
     endGame();
     return;
   }
-  paintBody(oldHead);
-  unpaintSnake(oldTail);
-  paintHead(head);
+  updateSnakeOnDisplay(oldHead,oldTail,head);
   if(head.eatsBody()){
     endGame();
-    return;
   }
   if(head.isSameCoordAs(food)) {
     snake.grow();
@@ -55,6 +59,11 @@ const addKeyListener=function() {
   let grid=document.getElementById("keys");
   grid.onkeyup=changeSnakeDirection;
   grid.focus();
+}
+
+const removeKeyListener = function(){
+  let grid = document.getElementById("grid");
+  grid.onkeyup = null;
 }
 
 const createSnake=function() {
