@@ -24,3 +24,10 @@
   background-color: blue;
   border-radius: 50%;
 }
+.display{
+  visibility: hidden;
+  font-size: 40px;
+  position: fixed;
+  margin-left: 500px;
+  margin-top: 200px;
+}

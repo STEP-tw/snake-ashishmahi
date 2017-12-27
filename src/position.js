@@ -38,6 +38,21 @@ Position.prototype.turnRight=function() {
 Position.prototype.isSameCoordAs=function(other) {
   return this.x==other.x && this.y==other.y;
 }
+//
+// let numberOfRows=60;
+// let numberOfCols=120;
+
+Position.prototype.doesXCoordCollide = function () {
+  return this.x>=120||this.x<0;
+};
+
+Position.prototype.doesYCoordCollide = function () {
+  return this.y>=60||this.y<0;
+};
+
+Position.prototype.doesCollisionOccures = function () {
+  return this.doesXCoordCollide()||this.doesYCoordCollide();
+};
 
 Position.prototype.getCoord=function() {
   return [this.x,this.y];

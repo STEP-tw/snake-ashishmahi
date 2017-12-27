@@ -5,6 +5,15 @@ let numberOfCols=120;
 
 let animator=undefined;
 
+const askForRestartGame = function(){
+  let display = document.getElementsByClassName("display")[0];
+  display.style.visibility = "visible";
+}
+
+const endGame = function(){
+  clearInterval(animator);
+  askForRestartGame();
+}
 const animateSnake=function() {
   let oldHead=snake.getHead();
   let oldTail=snake.move();
@@ -12,6 +21,10 @@ const animateSnake=function() {
   paintBody(oldHead);
   unpaintSnake(oldTail);
   paintHead(head);
+  if(head.doesCollisionOccures()){
+  endGame();
+  return;
+  }
   if(head.isSameCoordAs(food)) {
     snake.grow();
     createFood(numberOfRows,numberOfCols);
@@ -46,7 +59,6 @@ const createSnake=function() {
   body.push(tail);
   body.push(tail.next());
   let head=tail.next().next();
-
   snake=new Snake(head,body);
 }
 
