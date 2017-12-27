@@ -39,7 +39,7 @@ Position.prototype.isSameCoordAs=function(other) {
   return this.x==other.x && this.y==other.y;
 }
 
-Position.prototype.eatBody = function () {
+Position.prototype.eatsBody = function () {
   let refPosition = this;
   return body.some(function(pos){
     return refPosition.x==pos.x&&refPosition.y==pos.y;
@@ -54,7 +54,7 @@ Position.prototype.yCoordHitWall = function () {
   return this.y>=60||this.y<0;
 };
 
-Position.prototype.hitWall = function () {
+Position.prototype.hitsWall = function () {
   return this.xCoordHitWall()||this.yCoordHitWall();
 };
 

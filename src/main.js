@@ -18,13 +18,17 @@ const animateSnake=function() {
   let oldHead=snake.getHead();
   let oldTail=snake.move();
   let head=snake.getHead();
-  if(head.hitWall()||head.eatBody()) {
+  if(head.hitsWall()) {
     endGame();
     return;
   }
   paintBody(oldHead);
   unpaintSnake(oldTail);
   paintHead(head);
+  if(head.eatsBody()){
+    endGame();
+    return;
+  }
   if(head.isSameCoordAs(food)) {
     snake.grow();
     createFood(numberOfRows,numberOfCols);
