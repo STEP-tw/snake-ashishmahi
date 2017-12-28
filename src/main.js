@@ -1,3 +1,4 @@
+"use strict";
 let numberOfRows=60;
 let numberOfCols=120;
 let game = new Game(numberOfRows,numberOfCols);
@@ -5,19 +6,19 @@ let animator=undefined;
 
 const askForRestartGame = function(){
   updateDisplay("Game Over! Click here to restart game");
-}
+};
 
 const endGame = function(){
   clearInterval(animator);
   removeKeyListener();
   askForRestartGame();
-}
+};
 
 const updateSnakeOnDisplay = function(oldHead,oldTail,head){
   paintBody(oldHead);
   unpaintSnake(oldTail);
   paintHead(head);
-}
+};
 
 const animateSnake=function() {
   let oldHead=game.snake.getHead();
@@ -36,33 +37,33 @@ const animateSnake=function() {
     createFood(numberOfRows,numberOfCols);
     drawFood(game.food);
   }
-}
+};
 
 const changeSnakeDirection=function(event) {
   switch (event.code) {
     case "KeyA":
-      snake.turnLeft();
+      game.snake.turnLeft();
       break;
     case "KeyD":
-      snake.turnRight();
+      game.snake.turnRight();
       break;
     case "KeyC":
-      snake.grow();
+      game.snake.grow();
       break;
     default:
   }
-}
+};
 
 const addKeyListener=function() {
   let grid=document.getElementById("keys");
   grid.onkeyup=changeSnakeDirection;
   grid.focus();
-}
+};
 
 const removeKeyListener = function(){
   let grid = document.getElementById("grid");
   grid.onkeyup = null;
-}
+};
 
 const createSnake=function() {
   let tail=new Position(12,10,"east");
@@ -72,11 +73,11 @@ const createSnake=function() {
   let head=tail.next().next();
   snake=new Snake(head,body);
   game.addSnake(snake);
-}
+};
 
 const createFood=function(numberOfRows,numberOfCols) {
   game.food=generateRandomPosition(numberOfCols,numberOfRows);
-}
+};
 
 const startGame=function() {
   createSnake();
@@ -86,6 +87,6 @@ const startGame=function() {
   drawFood(game.food);
   addKeyListener();
   animator=setInterval(animateSnake,140);
-}
+};
 
 window.onload=startGame;

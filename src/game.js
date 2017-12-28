@@ -1,9 +1,10 @@
+"use strict";
 const Game = function(numberOfRows,numberOfCols){
   this.rows = numberOfRows;
   this.cols = numberOfCols;
   this.snake = {};
   this.food = {};
-}
+};
 
 Game.prototype.addSnake = function (snake) {
   this.snake = snake;
