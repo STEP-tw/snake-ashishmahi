@@ -39,28 +39,15 @@ Position.prototype.isSameCoordAs=function(other) {
   return this.x==other.x && this.y==other.y;
 }
 
-Position.prototype.eatsBody = function () {
-  let refPosition = this;
-  return body.some(function(pos){
-    return refPosition.x==pos.x&&refPosition.y==pos.y;
-  });
-};
-
-Position.prototype.xCoordHitWall = function () {
-  return this.x>=120||this.x<0;
-};
-
-Position.prototype.yCoordHitWall = function () {
-  return this.y>=60||this.y<0;
-};
-
-Position.prototype.hitsWall = function () {
-  return this.xCoordHitWall()||this.yCoordHitWall();
-};
-
 Position.prototype.getCoord=function() {
   return [this.x,this.y];
 }
+
+Position.prototype.isInRangeOf = function (topRight,bottomLeft) {
+  let colCondition = this.x<topRight[0]||this.x>=bottomLeft[1];
+  let rowCondition  = this.y<topRight[1]||this.y>=bottomLeft[0];
+  return colCondition||rowCondition;
+};
 
 const generateRandomPosition=function(maxX,maxY) {
   let x=generateRandomNumberBetween(0,maxX);

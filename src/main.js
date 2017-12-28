@@ -1,8 +1,6 @@
-let snake=undefined;
-let food=undefined;
 let numberOfRows=60;
 let numberOfCols=120;
-
+let game = new Game(numberOfRows,numberOfCols);
 let animator=undefined;
 
 const askForRestartGame = function(){
@@ -22,21 +20,21 @@ const updateSnakeOnDisplay = function(oldHead,oldTail,head){
 }
 
 const animateSnake=function() {
-  let oldHead=snake.getHead();
-  let oldTail=snake.move();
-  let head=snake.getHead();
-  if(head.hitsWall()) {
+  let oldHead=game.snake.getHead();
+  let oldTail=game.snake.move();
+  let head=game.snake.getHead();
+  if(game.hasSnakeCollided()) {
     endGame();
     return;
   }
   updateSnakeOnDisplay(oldHead,oldTail,head);
-  if(head.eatsBody()){
+  if(game.snake.eatsItself()){
     endGame();
   }
-  if(head.isSameCoordAs(food)) {
-    snake.grow();
+  if(head.isSameCoordAs(game.food)) {
+    game.snake.grow();
     createFood(numberOfRows,numberOfCols);
-    drawFood(food);
+    drawFood(game.food);
   }
 }
 
@@ -73,10 +71,11 @@ const createSnake=function() {
   body.push(tail.next());
   let head=tail.next().next();
   snake=new Snake(head,body);
+  game.addSnake(snake);
 }
 
 const createFood=function(numberOfRows,numberOfCols) {
-  food=generateRandomPosition(numberOfCols,numberOfRows);
+  game.food=generateRandomPosition(numberOfCols,numberOfRows);
 }
 
 const startGame=function() {
@@ -84,7 +83,7 @@ const startGame=function() {
   drawGrids(numberOfRows,numberOfCols);
   drawSnake(snake);
   createFood(numberOfRows,numberOfCols);
-  drawFood(food);
+  drawFood(game.food);
   addKeyListener();
   animator=setInterval(animateSnake,140);
 }
