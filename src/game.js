@@ -16,3 +16,7 @@ Game.prototype.hasSnakeCollided = function () {
   let bottomLeft = [this.rows,this.cols];
   return head.isInRangeOf(topRight,bottomLeft);
 };
+
+Game.prototype.boot = function (food) {
+  return
+};

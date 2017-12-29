@@ -67,11 +67,11 @@ const removeKeyListener = function(){
 
 const createSnake=function() {
   let tail=new Position(12,10,"east");
-  body=[];
+  let body=[];
   body.push(tail);
   body.push(tail.next());
   let head=tail.next().next();
-  snake=new Snake(head,body);
+  let snake=new Snake(head,body);
   game.addSnake(snake);
 };
 
@@ -82,7 +82,7 @@ const createFood=function(numberOfRows,numberOfCols) {
 const startGame=function() {
   createSnake();
   drawGrids(numberOfRows,numberOfCols);
-  drawSnake(snake);
+  drawSnake(game.snake);
   createFood(numberOfRows,numberOfCols);
   drawFood(game.food);
   addKeyListener();
