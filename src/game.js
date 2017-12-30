@@ -17,6 +17,19 @@ Game.prototype.hasSnakeCollided = function () {
   return head.isInRangeOf(topRight,bottomLeft);
 };
 
-Game.prototype.boot = function (food) {
-  return
+Game.prototype.getDirectionKey = function () {
+  let food = this.food;
+  let head = this.snake.getHead();
+  if(head.isXCoordSameAs(food)){
+    let deltaY = head.y-food.y;
+    if(deltaY>0){
+      return "KeyA";
+    }
+    return "KeyD";
+  }
+  else if (head.isYCoordSameAs(food)) {
+    let deltaX = head.x-food.x;
+    if(deltaX>0) return "KeyA";
+    return "KeyD";
+  }
 };

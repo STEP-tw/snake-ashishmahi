@@ -20,10 +20,17 @@ const updateSnakeOnDisplay = function(oldHead,oldTail,head){
   paintHead(head);
 };
 
+let flag = true;
 const animateSnake=function() {
   let oldHead=game.snake.getHead();
   let oldTail=game.snake.move();
   let head=game.snake.getHead();
+  let food = game.food;
+  let key = game.getDirectionKey();
+  if(head.hasAtleastOneCoordSameAs(food)&& flag){
+    changeSnakeDirection(key)
+    flag = false;
+  }
   if(game.hasSnakeCollided()) {
     endGame();
     return;
@@ -36,11 +43,13 @@ const animateSnake=function() {
     game.snake.grow();
     createFood(numberOfRows,numberOfCols);
     drawFood(game.food);
+    flag = true;
+    changeSnakeDirection(key);
   }
 };
 
-const changeSnakeDirection=function(event) {
-  switch (event.code) {
+const changeSnakeDirection=function(code) {
+  switch (code) {
     case "KeyA":
       game.snake.turnLeft();
       break;
@@ -85,8 +94,8 @@ const startGame=function() {
   drawSnake(game.snake);
   createFood(numberOfRows,numberOfCols);
   drawFood(game.food);
-  addKeyListener();
-  animator=setInterval(animateSnake,140);
+  // addKeyListener();
+  animator=setInterval(animateSnake,40);
 };
 
 window.onload=startGame;

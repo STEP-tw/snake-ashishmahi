@@ -49,6 +49,18 @@ Position.prototype.isInRangeOf = function (topRight,bottomLeft) {
   return colCondition||rowCondition;
 };
 
+Position.prototype.isXCoordSameAs = function (other) {
+  return this.x==other.x;
+};
+
+Position.prototype.isYCoordSameAs = function (other) {
+  return this.y==other.y;
+};
+
+Position.prototype.hasAtleastOneCoordSameAs = function (another) {
+  return this.x==another.x||this.y==another.y;
+};
+
 const generateRandomPosition=function(maxX,maxY) {
   let x=generateRandomNumberBetween(0,maxX);
   let y=generateRandomNumberBetween(0,maxY);
